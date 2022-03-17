@@ -11,7 +11,7 @@ coverage: test
 
 test:
 	cmake -B build
-	make -C build test
+	make -C build
 	cd build
 	valgrind ctest -VV
 	cd ..
