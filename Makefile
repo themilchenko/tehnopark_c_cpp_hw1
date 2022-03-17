@@ -13,7 +13,7 @@ test:
 	cd ..
 
 run:
-	zsh linters/run.sh
+	bash linters/run.sh
 
 coverage:
 	lcov -c -d build/CMakeFiles/DZ1_Team.dir/source -o ./build/info
