@@ -18,7 +18,7 @@ valgrind_test:
 
 sanitizers_test:
 	cmake -B build -DSANITIZERS=ON
-	make -C build test
+	make -C build all test
 
 run:
 	bash linters/run.sh
