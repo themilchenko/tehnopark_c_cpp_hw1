@@ -1,7 +1,7 @@
+#include "Team.h"
+
 #include <stdlib.h>
 #include <string.h>
-
-#include "Team.h"
 
 Team *create_team(int num, FILE *file) {
     Team *element = (Team *)malloc(sizeof(Team));
@@ -101,8 +101,8 @@ char *read_string(FILE *file) {
         if (is_memory_allocate) {
             copy_str = (char *)malloc((string.capacity_ + 1) * sizeof(char));
             if (string.str_) {
-                copy_str = strncpy(copy_str, string.str_,
-                                   string.size_ * sizeof(char));
+                copy_str =
+                    strncpy(copy_str, string.str_, string.size_ * sizeof(char));
                 free(string.str_);
                 string.str_ = NULL;
             }
@@ -154,41 +154,11 @@ double read_double(FILE *file) {
     return result;
 }
 
-void swap_teams(Team *left, Team *right) {
-    if (left && right && left != right) {
-        Team *temp = (Team *)malloc(sizeof(Team));
-
-        temp->team_number_ = left->team_number_;
-        temp->title_ = (char *)malloc(strlen(left->title_) * sizeof(char));
-        temp->title_ = strncpy(temp->title_, left->title_,
-                               strlen(left->title_) * sizeof(char));
-        temp->duration_ = left->duration_;
-        temp->num_of_point_ = left->num_of_point_;
-
-        left->team_number_ = right->team_number_;
-        if (left->title_) {
-            free(left->title_);
-        }
-        left->title_ = (char *)malloc(strlen(right->title_) * sizeof(char));
-        left->title_ = strncpy(left->title_, right->title_,
-                               strlen(right->title_) * sizeof(char));
-        left->duration_ = right->duration_;
-        left->num_of_point_ = right->num_of_point_;
-
-        right->team_number_ = temp->team_number_;
-        if (right->title_) {
-            free(right->title_);
-        }
-        right->title_ = (char *)malloc(strlen(temp->title_) * sizeof(char));
-        right->title_ = strncpy(right->title_, temp->title_,
-                                strlen(temp->title_) * sizeof(char));
-        right->duration_ = temp->duration_;
-        right->num_of_point_ = temp->num_of_point_;
-
-        if (temp->title_) {
-            free(temp->title_);
-        }
-        free(temp);
+void swap_teams(Team **left, Team **right) {
+    if (*left && *right && *left != *right) {
+        Team *temp = *right;
+        *right = *left;
+        *left = temp;
     }
 }
 
@@ -200,7 +170,7 @@ void sort_teams(Team **competition, const int num_of_teams) {
                 ((competition[j]->num_of_point_ ==
                   competition[j + 1]->num_of_point_) &&
                  (competition[j]->duration_ > competition[j + 1]->duration_))) {
-                swap_teams(competition[j], competition[j + 1]);
+                swap_teams(&competition[j], &competition[j + 1]);
             }
         }
     }

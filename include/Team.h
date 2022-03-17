@@ -16,7 +16,7 @@ typedef struct Team Team;
 void sort_teams(Team** competition, int num_of_teams);
 
 /*swap two teams for sorting*/
-void swap_teams(Team* left, Team* right);
+void swap_teams(Team **left, Team **right);
 
 /*getting one symbol from input stream*/
 char get_char();

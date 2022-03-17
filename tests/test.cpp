@@ -48,7 +48,7 @@ TEST(Team, swap_teams) {
 
     fclose(second_stream_case);
 
-    swap_teams(first_team, second_team);
+    swap_teams(&first_team, &second_team);
 
     ASSERT_EQ(first_team->team_number_, 25);
     ASSERT_STREQ(first_team->title_, "River");
