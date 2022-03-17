@@ -12,9 +12,9 @@ coverage: test
 test:
 	cmake -B build
 	make -C build
-	cd build
-	valgrind ctest -VV
-	cd ..
+	cd build/tests
+	valgrind ./test_team
+	cd ../..
 
 run:
 	bash linters/run.sh
