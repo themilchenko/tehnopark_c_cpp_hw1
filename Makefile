@@ -1,20 +1,20 @@
 build:
 	cmake -B build
-	cd build
-	make
-	cd ..
+	make -C build
 
 clean:
 	rm -rf ./build
 
+coverage: test
+	lcov -c -d build/CMakeFiles/DZ1_Team.dir/source -o ./build/info
+	genhtml ./build/info -o ./build/html
+
 test:
+	cmake -B build
+	make -C build test
 	cd build
-	ctest -VV
+	valgrind ctest -VV
 	cd ..
 
 run:
 	bash linters/run.sh
-
-coverage:
-	lcov -c -d build/CMakeFiles/DZ1_Team.dir/source -o ./build/info
-	genhtml ./build/info -o ./build/html
