@@ -79,7 +79,7 @@ char *read_string(FILE *file) {
         int capacity_;
     } string = {NULL, 0, 0};
 
-    char symbol = '\0';
+    int symbol = '\0';
     char *copy_str = NULL;
 
     while (symbol = get_char(file), symbol != EOF && symbol != '\n') {
@@ -115,7 +115,7 @@ char *read_string(FILE *file) {
 }
 
 int read_integer(FILE *file) {
-    char symbol = '\0';
+    int symbol = '\0';
     int result = 0;
 
     while (symbol = get_char(file), symbol != EOF && symbol != '\n') {
@@ -132,7 +132,7 @@ int read_integer(FILE *file) {
 }
 
 double read_double(FILE *file) {
-    char symbol = '\0';
+    int symbol = '\0';
     double result = 0;
     int after_point = 0;
     double exp = 10;
@@ -181,7 +181,7 @@ void swap_teams(Team *left, Team *right) {
         }
         right->title_ = (char *)malloc(strlen(temp->title_) * sizeof(char));
         right->title_ = strncpy(right->title_, temp->title_,
-                                strlen(temp->title_) * sizeof(char) + 1);
+                                strlen(temp->title_) * sizeof(char));
         right->duration_ = temp->duration_;
         right->num_of_point_ = temp->num_of_point_;
 

@@ -18,5 +18,3 @@ run:
 coverage:
 	lcov -c -d build/CMakeFiles/DZ1_Team.dir/source -o ./build/info
 	genhtml ./build/info -o ./build/html
-
-

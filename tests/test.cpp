@@ -17,6 +17,7 @@ TEST(TeamTest, create_true_team) {
     delete_team(team);
     fclose(stream_case);
 }
+
 TEST(TeamTest, create_false_team) {
     const char *test_case = "a\nSome...\n12point21\nno\n";
     FILE *stream_case = fmemopen((char *)test_case, strlen(test_case), "r");
@@ -29,26 +30,23 @@ TEST(TeamTest, create_false_team) {
 }
 
 TEST(Team, swap_teams) {
+    const char *first_test_case = "2\nMountain\n25.52\n3\n";
+    FILE *first_stream_case =
+        fmemopen((char *)first_test_case, strlen(first_test_case), "r");
+
+    const char *second_case = "25\nRiver\n30.01\n5\n";
+    FILE *second_stream_case =
+        fmemopen((char *)second_case, strlen(second_case), "r");
+
     Team *first_team = (Team *)malloc(sizeof(Team));
-    first_team->team_number_ = 2;
-    const char *first_name_of_team = "Mountain";
-    first_team->title_ =
-        (char *)malloc(strlen(first_name_of_team) * sizeof(char));
-    first_team->title_ = strncpy(first_team->title_, first_name_of_team,
-                                 strlen(first_name_of_team) * sizeof(char) + 1);
-    first_team->duration_ = 25.52;
-    first_team->num_of_point_ = 3;
+    first_team = create_team(0, first_stream_case);
+
+    fclose(first_stream_case);
 
     Team *second_team = (Team *)malloc(sizeof(Team));
-    second_team->team_number_ = 25;
-    const char *second_name_of_team = "River";
-    second_team->title_ =
-        (char *)malloc(strlen(second_name_of_team) * sizeof(char));
-    second_team->title_ =
-        strncpy(second_team->title_, second_name_of_team,
-                strlen(second_name_of_team) * sizeof(char) + 1);
-    second_team->duration_ = 30.01;
-    second_team->num_of_point_ = 5;
+    second_team = create_team(0, second_stream_case);
+
+    fclose(second_stream_case);
 
     swap_teams(first_team, second_team);
 
