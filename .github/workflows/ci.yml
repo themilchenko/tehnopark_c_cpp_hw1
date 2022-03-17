@@ -3,13 +3,13 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
-    container: milchenko/dz_1
+    container: milchenko/dz_1.1
     steps:
       - uses: actions/checkout@v2
       - run: make run
   build:
     runs-on: ubuntu-latest
-    container: milchenko/dz_1
+    container: milchenko/dz_1.1
     needs: [check]
     steps:
       - uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
           path: main.out
   test:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters
+    container: milchenko/dz_1.1
     needs: [build]
     steps:
       - uses: actions/checkout@v2
