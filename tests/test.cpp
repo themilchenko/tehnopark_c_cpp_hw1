@@ -27,6 +27,8 @@ TEST(TeamTest, create_false_team) {
     ASSERT_STREQ(team->title_, "Some...");
     ASSERT_EQ(team->duration_, 0);
     ASSERT_EQ(team->num_of_point_, 0);
+
+    delete_team(team);
 }
 
 TEST(Team, swap_teams) {
@@ -38,13 +40,11 @@ TEST(Team, swap_teams) {
     FILE *second_stream_case =
         fmemopen((char *)second_case, strlen(second_case), "r");
 
-    Team *first_team = (Team *)malloc(sizeof(Team));
-    first_team = create_team(0, first_stream_case);
+    Team *first_team = create_team(0, first_stream_case);
 
     fclose(first_stream_case);
 
-    Team *second_team = (Team *)malloc(sizeof(Team));
-    second_team = create_team(0, second_stream_case);
+    Team *second_team = create_team(0, second_stream_case);
 
     fclose(second_stream_case);
 
@@ -83,16 +83,9 @@ TEST(Team, sort_teams) {
 
     Team **competition = (Team **)malloc(size_of_teams * sizeof(Team *));
 
-    competition[0] = (Team *)malloc(sizeof(Team));
     competition[0] = create_team(0, first_stream_case);
-
-    competition[1] = (Team *)malloc(sizeof(Team));
     competition[1] = create_team(0, second_stream_case);
-
-    competition[2] = (Team *)malloc(sizeof(Team));
     competition[2] = create_team(0, third_stream_case);
-
-    competition[3] = (Team *)malloc(sizeof(Team));
     competition[3] = create_team(0, fourth_stream_case);
 
     fclose(first_stream_case);

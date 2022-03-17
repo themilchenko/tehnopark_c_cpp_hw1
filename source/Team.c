@@ -57,7 +57,6 @@ void delete_team(Team *team) {
 
     if (team->title_) {
         free(team->title_);
-        team->title_ = NULL;
     }
     free(team);
 }
