@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 
+/*getting one symbol from input stream*/
+char get_char();
+
 /*getting integer num*/
 int read_integer();
 
@@ -24,9 +27,6 @@ void sort_teams(Team** competition, int num_of_teams);
 
 /*swap two teams for sorting*/
 void swap_teams(Team **left, Team **right);
-
-/*getting one symbol from input stream*/
-char get_char();
 
 /*creating new team*/
 Team* create_team(int num, FILE* file);

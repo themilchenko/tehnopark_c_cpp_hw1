@@ -68,8 +68,7 @@ void sort_teams(Team **competition, const int num_of_teams) {
 
     for (int i = 0; i < num_of_teams; ++i) {
         for (int j = 0; j < num_of_teams - i - 1; ++j) {
-
-            if (!competition[j] && !competition[j + 1]) {
+            if (!competition[j] || !competition[j + 1]) {
                 return;
             }
 
