@@ -10,6 +10,7 @@ add_compile_definitions(DEBUG)
 option(SANITIZERS "Turn on sanitizers" OFF)
 
 set(${PROJECT_NAME}_TEAM_H ${CMAKE_SOURCE_DIR}/include/Team.h)
+set(${PROJECT_NAME}_INPUT_C ${CMAKE_SOURCE_DIR}/source/input.c)
 set(${PROJECT_NAME}_TEAM_C ${CMAKE_SOURCE_DIR}/source/Team.c)
 set(${PROJECT_NAME}_MAIN_C ${CMAKE_SOURCE_DIR}/source/main.c)
 
@@ -17,7 +18,7 @@ add_compile_options(-fsanitize=address -fsanitize=undefined -fno-omit-frame-poin
 add_link_options(-fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer)
 
 add_executable(${PROJECT_NAME} source/main.c)
-add_library(${PROJECT_NAME}_Team ${${PROJECT_NAME}_TEAM_C})
+add_library(${PROJECT_NAME}_Team ${${PROJECT_NAME}_TEAM_C} ${${PROJECT_NAME}_INPUT_C})
 
 if (SANITIZERS)
     set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-fprofile-arcs -ftest-coverage -fPIC -O0")
